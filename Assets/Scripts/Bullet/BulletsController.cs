@@ -41,7 +41,7 @@ public class BulletsController : MonoBehaviour
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);
             
-            bullet.GetComponent<Bullet>().MovementSpeed = _bulletSpeed;
+            bullet.GetComponent<BulletEnemy>().MovementSpeed = _bulletSpeed;
         }
     }
 }

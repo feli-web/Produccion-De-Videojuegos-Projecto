@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletEnemy : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 0f;
     public float MovementSpeed = 1f;
