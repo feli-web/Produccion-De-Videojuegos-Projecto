@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float rotation = 0f;
-    public float speed = 1f;
+    [SerializeField] private float _rotationSpeed = 0f;
+    public float MovementSpeed = 1f;
+    
+    private Vector2 _spawnPosition;
+    private float _lifeTimer = 0f;
 
-
-    private Vector2 spawnPoint;
-    private float timer = 0f;
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        spawnPoint = new Vector2(transform.position.x, transform.position.y);
+        _spawnPosition = transform.position;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
-        if (timer > 3f) { this.gameObject.SetActive(false); }
-        timer += Time.deltaTime;
-        transform.position = Movement(timer);
-    }
+        _lifeTimer += Time.deltaTime;
 
+        if (_lifeTimer > 3f) 
+        { 
+            gameObject.SetActive(false); 
+            return; 
+        }
+
+        transform.position = Movement(_lifeTimer);
+    }
 
     private Vector2 Movement(float timer)
     {
-        // Moves right according to the bullet's rotation
-        float x = timer * speed * transform.right.x;
-        float y = timer * speed * transform.right.y;
-        return new Vector2(x + spawnPoint.x, y + spawnPoint.y);
+        // Mueve la bala de acuerdo a su rotación
+        float x = timer * MovementSpeed * transform.right.x;
+        float y = timer * MovementSpeed * transform.right.y;
+        return new Vector2(x + _spawnPosition.x, y + _spawnPosition.y);
     }
 }

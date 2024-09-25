@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public BulletsController bc;
-    public float rotateBC;
+    public BulletsController _bulletsController;
+    public float _rotateBulletsController;
 
     void Start()
     {
-        bc = GameObject.Find("BulletController").GetComponent<BulletsController>();
+        _bulletsController = GameObject.Find("BulletController").GetComponent<BulletsController>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        bc.gameObject.transform.Rotate(0, 0, rotateBC);
+        _bulletsController.gameObject.transform.Rotate(0, 0, _rotateBulletsController);
     }
 }

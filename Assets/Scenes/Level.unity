@@ -487,9 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39116d98652c47d4fbd254a0cf66e794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  spawnerType: 0
-  firingRate: 0.1
+  _bulletSpeed: 2
+  _spawnerType: 0
+  _fireRate: 0.1
 --- !u!1 &1267874129
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 1267874130}
   - component: {fileID: 1267874131}
   m_Layer: 0
-  m_Name: Triangle (1)
+  m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,7 +598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462901155}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1452,7 +1452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959333382}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -1472,8 +1472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5cc9ff78a935840b285c52201cc3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 1462901155}
-  speed: 5
+  _rotationCenter: {fileID: 1462901155}
+  _rotationSpeed: 5
 --- !u!1 &2044016635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1486,7 @@ GameObject:
   - component: {fileID: 2044016636}
   - component: {fileID: 2044016638}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1572,8 +1572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b316dde15f3604bb0dda11d1cb55cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 0}
-  rotateBC: 0
+  _bulletsController: {fileID: 0}
+  _rotateBulletsController: 0
 --- !u!1 &2115568062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,9 +1603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6d637c4c8b5834eb22006edab2c6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledBullets: []
-  bulletsToPool: {fileID: 7196928700061586068, guid: a79d1ed46c643c64e90a3fcb1aff3bb4, type: 3}
-  amountToPool: 5000
+  _pooledBullets: []
+  _bulletPrefab: {fileID: 7196928700061586068, guid: a79d1ed46c643c64e90a3fcb1aff3bb4, type: 3}
+  _poolSize: 5000
 --- !u!4 &2115568064
 Transform:
   m_ObjectHideFlags: 0
@@ -1626,9 +1626,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1530870191}
   - {fileID: 1462901157}
   - {fileID: 2044016637}
   - {fileID: 2115568064}
   - {fileID: 1588460606}
+  - {fileID: 1530870191}
   - {fileID: 355948254}

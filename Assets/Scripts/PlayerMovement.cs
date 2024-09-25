@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject center;
-    public float speed;
-    int o = 1;
+    [SerializeField] private GameObject _rotationCenter;
+    [SerializeField] private float _rotationSpeed = 5f;
+    private int _rotationDirection = 1;
 
     void FixedUpdate()
     {
-        center.transform.Rotate(0, 0, speed * o);
+        _rotationCenter.transform.Rotate(0, 0, _rotationSpeed * _rotationDirection);
     }
+
     public void ChangeOrientation()
     {
-        o *= -1;
+        _rotationDirection *= -1;
     }
 }

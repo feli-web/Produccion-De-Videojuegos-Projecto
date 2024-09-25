@@ -6,37 +6,47 @@ using UnityEngine.Pool;
 public class BulletPool : MonoBehaviour
 {
     public static BulletPool SharedInstance;
-    public List<GameObject> pooledBullets;
-    public GameObject bulletsToPool;
-    public int amountToPool;
+
+    [Header("Pool Settings")]
+    [SerializeField] private List<GameObject> _pooledBullets;
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private int _poolSize;
 
     void Awake()
     {
-        SharedInstance = this;
+        if (SharedInstance == null)
+        {
+            SharedInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
     void Start()
     {
         GenerateBullets();
     }
+
     void GenerateBullets()
     {
-        pooledBullets = new List<GameObject>();
-        GameObject tmp;
-        for (int i = 0; i < amountToPool; i++)
+        _pooledBullets = new List<GameObject>();
+        for (int i = 0; i < _poolSize; i++)
         {
-            tmp = Instantiate(bulletsToPool);
-            tmp.SetActive(false);
-            pooledBullets.Add(tmp);
+            GameObject bulletInstance = Instantiate(_bulletPrefab);
+            bulletInstance.SetActive(false);
+            _pooledBullets.Add(bulletInstance);
         }
     }
 
-    public GameObject GetPooledObject()
+    public GameObject GetPooledBullet()
     {
-        for (int i = 0; i < amountToPool; i++)
+        foreach (GameObject bullet in _pooledBullets)
         {
-            if (!pooledBullets[i].activeInHierarchy)
+            if (!bullet.activeInHierarchy)
             {
-                return pooledBullets[i];
+                return bullet;
             }
         }
         return null;
