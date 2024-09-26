@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        float angle = _speed * _rotationDirection * Time.deltaTime;
+        float angle = _speed * _rotationDirection;
         transform.RotateAround(_rotationPoint, Vector3.forward, angle);
     }
 

@@ -10,26 +10,27 @@ public class BulletsController : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 1f;
 
     [Header("Spawner Attributes")]
-    [SerializeField] private SpawnerType _spawnerType;
-    [SerializeField] private float _fireRate = 1f;
+    [SerializeField] private SpawnerType spawnerType;
+    [SerializeField] private float firingRate = 1f;
 
-    private float _fireTimer = 0f;
+    private float timer = 0f;
 
     void Update()
     {
-        _fireTimer += Time.deltaTime;
-
-        if (_spawnerType == SpawnerType.Spin)
+        timer += Time.deltaTime;
+        if (spawnerType == SpawnerType.Spin)
         {
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 1f);
+            // Use deltaTime to ensure consistent rotation speed
+            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + (60f * Time.deltaTime));
         }
 
-        if (_fireTimer >= _fireRate)
+        if (timer >= firingRate)
         {
             Fire();
-            _fireTimer = 0;
+            timer = 0;
         }
     }
+
 
     private void Fire()
     {

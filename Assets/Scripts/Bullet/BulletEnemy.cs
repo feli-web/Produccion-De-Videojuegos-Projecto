@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class BulletEnemy : MonoBehaviour
 {
-    [SerializeField] private float _rotationSpeed = 0f;
     public float MovementSpeed = 1f;
     
     private Vector2 _spawnPosition;
-    private float _lifeTimer = 0f;
+    private float timer = 0f;
 
     void Start()
     {
         _spawnPosition = transform.position;
     }
+    void OnEnable()
+    {
+        timer = 0f;
+        _spawnPosition = transform.position;
+    }
 
     void Update()
     {
-        _lifeTimer += Time.deltaTime;
+        timer += Time.deltaTime;
+        transform.position = Movement(timer);
 
-        if (_lifeTimer > 3f) 
-        { 
-            gameObject.SetActive(false); 
-            return; 
+        // Disable the bullet after 10 seconds (for example) or check if it is off-screen
+        if (timer > 10f)
+        {
+            gameObject.SetActive(false);
         }
-
-        transform.position = Movement(_lifeTimer);
     }
+
 
     private Vector2 Movement(float timer)
     {
