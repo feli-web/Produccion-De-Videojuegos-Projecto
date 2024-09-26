@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public BulletsController _bulletsController;
-    public float _rotateBulletsController;
+    float timer = 0;
+    public float enemyTime;
+    public GameObject bc;
+    Slider enemyLifeSlider;
+ 
 
     void Start()
     {
-        _bulletsController = GameObject.Find("BulletController").GetComponent<BulletsController>();
+        enemyLifeSlider = GameObject.Find("EnemyLifeSlider").GetComponent<Slider>();
+        enemyLifeSlider.minValue = 0;
+        enemyLifeSlider.maxValue = enemyTime;
     }
 
     void FixedUpdate()
     {
-        _bulletsController.gameObject.transform.Rotate(0, 0, _rotateBulletsController);
+        if (timer < enemyTime)
+        {
+            enemyLifeSlider.value = timer;
+            timer += Time.deltaTime;
+        }
     }
 }
