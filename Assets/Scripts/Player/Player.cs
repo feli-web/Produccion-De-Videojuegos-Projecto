@@ -18,4 +18,12 @@ public class Player : MonoBehaviour
     {
         _rotationDirection *= -1;
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

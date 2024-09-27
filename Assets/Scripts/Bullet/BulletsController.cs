@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BulletsController : MonoBehaviour
 {
-    private enum SpawnerType { Straight, Spin }
+    public enum SpawnerType { Straight, Spin }
 
     [Header("Bullet Attributes")]
-    [SerializeField] private float _bulletSpeed = 1f;
+    public float _bulletSpeed = 1f;
+    public int _bulletSpinDirection = 1;
 
     [Header("Spawner Attributes")]
-    [SerializeField] private SpawnerType spawnerType;
-    [SerializeField] private float firingRate = 1f;
+    public SpawnerType spawnerType;
+    public float firingRate = 1f;
 
     private float timer = 0f;
 
@@ -21,7 +22,7 @@ public class BulletsController : MonoBehaviour
         if (spawnerType == SpawnerType.Spin)
         {
             // Use deltaTime to ensure consistent rotation speed
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + (60f * Time.deltaTime));
+            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + (_bulletSpinDirection * 60f * Time.deltaTime));
         }
 
         if (timer >= firingRate)

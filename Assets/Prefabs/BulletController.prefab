@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39116d98652c47d4fbd254a0cf66e794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 2
-  spawnerType: 1
-  firingRate: 1
+  _bulletSpeed: 0
+  _bulletSpinDirection: 1
+  spawnerType: 0
+  firingRate: 0.5
