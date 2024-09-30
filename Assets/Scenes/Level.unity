@@ -1626,9 +1626,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b316dde15f3604bb0dda11d1cb55cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTime: 180
+  enemyTime: 60
   timeStages:
-  - 80
+  - 50
+  - 40
   bc: {fileID: 8636388649262400257, guid: 9774f9cc704615b459585f581c03abe9, type: 3}
 --- !u!1 &2110936563
 GameObject:

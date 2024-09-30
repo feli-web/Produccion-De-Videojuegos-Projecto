@@ -18,10 +18,10 @@ public class Enemy : MonoBehaviour
         enemyLifeSlider = GameObject.Find("EnemyLifeSlider").GetComponent<Slider>();
         enemyLifeSlider.minValue = 0;
         enemyLifeSlider.maxValue = enemyTime;
-        StartCoroutine(Patern());
+        StartCoroutine(Pattern());
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (enemyTime > 0)
         {
@@ -30,25 +30,52 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public IEnumerator Patern()
+    public IEnumerator Pattern()
     {
         var a = Instantiate(bc, this.transform.position, Quaternion.Euler(0, 0, 0));
         var b = Instantiate(bc, this.transform.position, Quaternion.Euler(0, 0, 0));
 
-        while (enemyTime != 0)
+        BulletsController aController = a.GetComponent<BulletsController>();
+        BulletsController bController = b.GetComponent<BulletsController>();
+
+        a.transform.SetParent(this.transform);
+        b.transform.SetParent(this.transform);
+
+        while (enemyTime > 0)
         {
             if (enemyTime > timeStages[0])
             {
+                // First stage logic
+                aController.spawnerType = BulletsController.SpawnerType.Spin;
+                aController._bulletSpeed = 3;
+                aController._bulletSpinDirection = -1;
+                aController.firingRate = 0.2f;
 
-                a.GetComponent<BulletsController>().spawnerType = BulletsController.SpawnerType.Spin;
-                a.GetComponent<BulletsController>()._bulletSpeed = 3;
-                a.GetComponent<BulletsController>()._bulletSpinDirection = -1;
-                b.GetComponent<BulletsController>().spawnerType = BulletsController.SpawnerType.Spin;
-                b.GetComponent<BulletsController>()._bulletSpeed = 3;
-                b.GetComponent<BulletsController>()._bulletSpinDirection = 1;
-                
-                yield return new WaitForSeconds(0.5f);
+                bController.spawnerType = BulletsController.SpawnerType.Spin;
+                bController._bulletSpeed = 6;
+                bController._bulletSpinDirection = -1;
+                bController.firingRate = 0.2f;
+
+                yield return null;
             }
-        } 
+            else if (enemyTime > timeStages[1] && enemyTime < timeStages[0])
+            {
+                aController._bulletSpinDirection = 1;
+                bController._bulletSpinDirection = 1;
+
+                yield return null;
+            }
+        }
+
+  
+        EndPattern();
     }
+
+    void EndPattern()
+    {
+     
+        Debug.Log("Enemy defeated or pattern completed.");
+        Destroy(gameObject); 
+    }
+
 }
