@@ -591,7 +591,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationPoint: {x: 0, y: 0}
-  _speed: 2
+  _initialSpeed: 5
+  _maxSpeed: 15
+  _speedIncrement: 0.3
 --- !u!58 &1267874133
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1545,7 +1547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2044016636
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1610,8 +1612,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2115568064}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2044016638
@@ -1626,10 +1627,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b316dde15f3604bb0dda11d1cb55cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTime: 60
+  enemyTime: 12
   timeStages:
-  - 50
-  - 40
+  - 9
+  - 6
+  - 3
   bc: {fileID: 8636388649262400257, guid: 9774f9cc704615b459585f581c03abe9, type: 3}
 --- !u!1 &2110936563
 GameObject:
@@ -1683,7 +1685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2115568063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,7 +1700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pooledBullets: []
   _bulletPrefab: {fileID: 7196928700061586068, guid: a79d1ed46c643c64e90a3fcb1aff3bb4, type: 3}
-  _poolSize: 5000
+  _poolSize: 500
 --- !u!4 &2115568064
 Transform:
   m_ObjectHideFlags: 0
@@ -1709,10 +1711,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2044016637}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &361145091874284137
 MonoBehaviour:
@@ -1974,6 +1976,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 355948254}
   - {fileID: 6896838488601108771}
-  - {fileID: 1267874130}
+  - {fileID: 2115568064}
   - {fileID: 2044016637}
+  - {fileID: 1267874130}
   - {fileID: 1588460606}
