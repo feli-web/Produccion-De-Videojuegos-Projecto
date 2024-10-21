@@ -14,24 +14,36 @@ public class BulletsController : MonoBehaviour
     public SpawnerType spawnerType;
     public float firingRate = 1f;
 
-    private float timer = 0f;
+    private float _timer = 0f;
 
     void Update()
     {
-        timer += Time.deltaTime;
+        UpdateTimer();
+        HandleBulletRotation();
+        HandleBulletFiring();
+    }
+
+    private void UpdateTimer()
+    {
+        _timer += Time.deltaTime;
+    }
+
+    private void HandleBulletRotation()
+    {
         if (spawnerType == SpawnerType.Spin)
         {
-            // Use deltaTime to ensure consistent rotation speed
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + (_bulletSpinDirection * 60f * Time.deltaTime));
-        }
-
-        if (timer >= firingRate)
-        {
-            Fire();
-            timer = 0;
+            transform.eulerAngles += new Vector3(0f, 0f, _bulletSpinDirection * 60f * Time.deltaTime);
         }
     }
 
+    private void HandleBulletFiring()
+    {
+        if (_timer >= firingRate)
+        {
+            Fire();
+            _timer = 0;
+        }
+    }
 
     private void Fire()
     {
@@ -42,7 +54,6 @@ public class BulletsController : MonoBehaviour
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);
-            
             bullet.GetComponent<BulletEnemy>().MovementSpeed = _bulletSpeed;
         }
     }

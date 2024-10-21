@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Settings")]
     [SerializeField] private Vector2 _rotationPoint = Vector2.zero;
     [SerializeField] private float _initialSpeed = 5f; 
     [SerializeField] private float _maxSpeed = 15f;    
     [SerializeField] private float _speedIncrement = 0.1f; 
+
     private float _currentSpeed;
     private int _rotationDirection = 1;
 
@@ -18,9 +20,18 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        RotatePlayer();
+        IncrementSpeedIfNeeded();
+    }
+
+    private void RotatePlayer()
+    {
         float angle = _currentSpeed * _rotationDirection;
         transform.RotateAround(_rotationPoint, Vector3.forward, angle);
+    }
 
+    private void IncrementSpeedIfNeeded()
+    {
         if (_currentSpeed < _maxSpeed)
         {
             _currentSpeed += _speedIncrement * Time.fixedDeltaTime;

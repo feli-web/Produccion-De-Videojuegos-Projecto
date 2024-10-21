@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class BulletPool : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class BulletPool : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Asegura que solo haya una instancia de BulletPool
         }
     }
 
@@ -29,13 +28,13 @@ public class BulletPool : MonoBehaviour
         GenerateBullets();
     }
 
-    void GenerateBullets()
+    private void GenerateBullets()
     {
         _pooledBullets = new List<GameObject>();
         for (int i = 0; i < _poolSize; i++)
         {
             GameObject bulletInstance = Instantiate(_bulletPrefab);
-            bulletInstance.SetActive(false);
+            bulletInstance.SetActive(false); // Desactiva la bala inicialmente
             _pooledBullets.Add(bulletInstance);
         }
     }
@@ -44,11 +43,12 @@ public class BulletPool : MonoBehaviour
     {
         foreach (GameObject bullet in _pooledBullets)
         {
-            if (!bullet.activeInHierarchy)
+            if (!bullet.activeInHierarchy) // Verifica si la bala está inactiva
             {
                 return bullet;
             }
         }
+
         return null;
     }
 }
